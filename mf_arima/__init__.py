@@ -1,6 +1,8 @@
 #
 import statsmodels.api as sm
 
+from . import forecast
+
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
@@ -20,3 +22,11 @@ def plot_diagnostics(arima_model):
     print(arima_model.summary().tables[1])
     arima_model.plot_diagnostics(figsize=(15, 12))
     plt.show()
+
+
+def validate(dataframe, model, data_starting, predict_starting):
+    forecast.validate(dataframe, model, data_starting, predict_starting)
+
+
+def predict(dataframe, model, prediction_count):
+    forecast.predict(dataframe, model, prediction_count)
