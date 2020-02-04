@@ -3,14 +3,15 @@ import pandas as pd
 from pandas.io.json import json_normalize
 import statsmodels.api as sm
 
-from . import mfapi, mod
+from . import mod
+import mf_data
 
 import matplotlib.pyplot as plt
 plt.style.use('fivethirtyeight')
 
 
 def from_url(mf_url):
-    mf_json = mfapi.mf_json_from_url(mf_url)
+    mf_json = mf_data.json_from_url(mf_url)
     dataframe = json_normalize(mf_json)
     dataframe['date'] = dataframe['date'].apply(mod.null_date_converter)
     dataframe['date'] = pd.to_datetime(dataframe['date'])
