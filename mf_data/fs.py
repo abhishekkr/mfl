@@ -13,6 +13,7 @@ def fullpath(relative_path):
 
 def mkdir(relative_path):
     try:
+        if os.path.exists(relative_path): return
         os.makedirs(
             fullpath(relative_path)
         )
